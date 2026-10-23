@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius-muse/brand/schemas/analytics-raw.schema.json",
+  "title": "analytics/raw/<week>.yaml — stats pasted by Samuel or copied from a platform",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["week", "items"],
+  "properties": {
+    "week": { "type": "string", "pattern": "^[0-9]{4}-W[0-9]{2}$" },
+    "source": { "type": ["string", "null"], "description": "Where the numbers came from, e.g. 'YouTube Studio export, pasted 2026-10-25'." },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["content_id", "platform", "metrics"],
+        "properties": {
+          "content_id": { "type": "string" },
+          "platform": { "type": "string", "enum": ["youtube", "tiktok", "instagram", "facebook", "shorts"] },
+          "metrics": {
+            "type": "object",
+            "additionalProperties": { "type": ["number", "null"], "minimum": 0 },
+            "description": "Metric name -> supplied value. Omit or null when unknown."
+          }
+        }
+      }
+    },
+    "human_editing_minutes": { "type": ["number", "null"], "minimum": 0 },
+    "workflow_runs": { "type": ["integer", "null"], "minimum": 0 },
+    "workflow_failures": { "type": ["integer", "null"], "minimum": 0 },
+    "qualified_inquiries_blueprint": { "type": ["integer", "null"], "minimum": 0 },
+    "notes": { "type": ["string", "null"] }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius-muse/brand/schemas/decisions.schema.json",
+  "title": "content/review/decisions-<week>.yaml — Samuel's review session, append-only",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "week",
+    "decisions"
+  ],
+  "properties": {
+    "week": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-W[0-9]{2}$"
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "content_id",
+          "decision",
+          "decided_by",
+          "decided_at"
+        ],
+        "properties": {
+          "content_id": {
+            "type": "string"
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "approve",
+              "approve_with_edits",
+              "reject"
+            ]
+          },
+          "decided_by": {
+            "type": "string",
+            "enum": [
+              "samuel"
+            ]
+          },
+          "decided_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reason_code": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "VOICE",
+              "UNVERIFIED_CLAIM",
+              "OFF_BRAND",
+              "WEAK_HOOK",
+              "WRONG_AUDIENCE",
+              "TOO_GENERIC",
+              "PERSONAL",
+              null
+            ]
+          },
+          "note": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edits": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "field",
+                "before",
+                "after"
+              ],
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "before": {
+                  "type": "string"
+                },
+                "after": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "human_editing_minutes": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "lint_override": {
+            "type": "boolean",
+            "default": false,
+            "description": "Samuel explicitly approved despite blocking lint findings; note is required."
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "decision": {
+                  "const": "reject"
+                }
+              },
+              "required": [
+                "decision"
+              ]
+            },
+            "then": {
+              "properties": {
+                "reason_code": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "lint_override": {
+                  "const": true
+                }
+              },
+              "required": [
+                "lint_override"
+              ]
+            },
+            "then": {
+              "properties": {
+                "note": {
+                  "type": "string",
+                  "minLength": 10
+                }
+              },
+              "required": [
+                "note"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

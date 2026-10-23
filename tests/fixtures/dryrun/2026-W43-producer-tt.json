@@ -1,0 +1,22 @@
+{
+  "content_id": "2026-W43-FMT01-HERO-TT",
+    "format": "FMT-01",
+  "campaign": "w43-proof-of-work",
+  "theme": "phone-to-product",
+  "platforms": ["tiktok"],
+  "audience": ["global-builders"],
+  "objective": "brand_recognition",
+  "hook": "132 tests failed. Watch the fix.",
+  "script": "132 tests failed on this commit.\n\nNo music, no cutaways. The terminal, then the fix, then the green run.\n\nThat is the whole video. The commit is pinned in the comments.",
+  "caption": "132 tests failed at 59a5a6d. The fix is one commit later.",
+  "cta": "Check the commit yourself before you believe me.",
+  "visual_brief": "Vertical 9:16. Terminal text large enough to read on a phone. Receipt visible in the first 1.5 seconds on Deep Muse Blue #0A2463.",
+  "claims": ["CLM-101"],
+  "sources": ["fixture://mobius-muse/demo @ 59a5a6d"],
+  "scores": {},
+  "status": "draft",
+  "rejection_reason": null,
+  "published_urls": {},
+  "performance": {},
+  "deriv_of": "2026-W43-FMT01-HERO"
+}

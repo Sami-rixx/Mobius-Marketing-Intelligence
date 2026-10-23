@@ -1,0 +1,31 @@
+{
+  "generated_by": "researcher",
+  "week": "2026-W43",
+  "brief": "Dry-run fixture: what can a Kenyan builder show from real evidence this week?",
+  "findings": [
+    {
+      "finding": "SYNTHETIC FIXTURE finding: short-form build logs get more completion when the artifact appears in the first two seconds",
+      "source": "fixture://research/platform-note/1",
+      "confidence": "medium",
+      "verified": false,
+      "suggested_use": "Lead the TikTok derivative with the terminal or badge, not a talking head"
+    },
+    {
+      "finding": "SYNTHETIC FIXTURE finding: school administrators ask about timetable clashes before features",
+      "source": "fixture://research/school-owner-interview-note",
+      "confidence": "medium",
+      "verified": false,
+      "suggested_use": "FMT-03 angle: start from the timetable clash, end with the demo"
+    },
+    {
+      "finding": "SYNTHETIC FIXTURE finding: verifying a claim takes one click when the commit link is included",
+      "source": "fixture://research/engineering-note/2",
+      "confidence": "high",
+      "verified": true,
+      "suggested_use": "FMT-02 episode: an import is not a workflow run"
+    }
+  ],
+  "gaps": [
+    "No public data on Kenyan school software budgets was found; do not claim one."
+  ]
+}

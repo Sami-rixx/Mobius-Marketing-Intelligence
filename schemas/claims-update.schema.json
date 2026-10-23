@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius-muse/brand/schemas/claims-update.schema.json",
+  "title": "Evidence Keeper output — proposed registry operations",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_by", "week", "rationale", "operations"],
+  "properties": {
+    "generated_by": { "type": "string", "const": "evidence-keeper" },
+    "week": { "type": "string", "pattern": "^[0-9]{4}-W[0-9]{2}$" },
+    "rationale": { "type": "string", "minLength": 20 },
+    "operations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["op", "claim"],
+        "properties": {
+          "op": { "type": "string", "enum": ["add", "update", "expire"] },
+          "claim": { "$ref": "claims-registry.schema.json#/$defs/claim" }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "op": { "const": "expire" } }, "required": ["op"] },
+            "then": { "properties": { "claim": { "required": ["quarantine_reason"] } } }
+          }
+        ]
+      }
+    }
+  }
+}

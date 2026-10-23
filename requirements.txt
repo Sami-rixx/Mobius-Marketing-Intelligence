@@ -1,0 +1,3 @@
+# Runtime (pinned; update deliberately, never transitively)
+PyYAML==6.0.2
+jsonschema==4.23.0

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "source": "docs/03-content-schema.md",
+  "threshold": 70,
+  "dimensions": [
+    { "id": "hook_strength", "label": "Hook strength (first 1.5 s / first line)", "weight": 25 },
+    { "id": "specificity_evidence", "label": "Specificity & evidence (receipts shown)", "weight": 25 },
+    { "id": "clarity", "label": "Clarity", "weight": 20 },
+    { "id": "brand_fit", "label": "Brand fit", "weight": 15 },
+    { "id": "platform_fit", "label": "Platform fit", "weight": 15 }
+  ],
+  "reason_codes": {
+    "VOICE": "Doesn't sound like Samuel",
+    "UNVERIFIED_CLAIM": "Claim lacks registry evidence",
+    "OFF_BRAND": "Visual/tagline/tone violation",
+    "WEAK_HOOK": "Fails hook strength",
+    "WRONG_AUDIENCE": "Register or platform mismatch",
+    "TOO_GENERIC": "Could be any AI brand; no receipts",
+    "PERSONAL": "I'll rewrite it myself — no system fix implied"
+  }
+}

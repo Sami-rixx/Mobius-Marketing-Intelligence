@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "source": "brand/banned-and-required.md (kept in sync by tests/test_brand_rules.py)",
+  "canonical_tagline": "Making Ideas Inevitable",
+  "retired_taglines": [
+    "The Inevitable Form",
+    "The Inevitable form"
+  ],
+  "banned_marketing_phrases": [
+    "game-changer",
+    "game changer",
+    "revolutionary",
+    "unlock the power",
+    "unleash",
+    "disrupt",
+    "disruptor",
+    "10x",
+    "synergy",
+    "cutting-edge",
+    "next-level",
+    "secret sauce",
+    "skyrocket",
+    "supercharge",
+    "paradigm shift",
+    "thought leader",
+    "hustle",
+    "grind",
+    "crush it"
+  ],
+  "banned_hype_shapes": [
+    "ai will replace",
+    "the future of work is here",
+    "this changes everything",
+    "limited time",
+    "act now",
+    "only 3 spots",
+    "comment below if",
+    "tag a friend",
+    "double tap if",
+    "who else wants",
+    "#ad",
+    "#sponsored"
+  ],
+  "corporate_throat_clearing": [
+    "we are thrilled",
+    "we're thrilled",
+    "excited to announce",
+    "we're excited",
+    "proud to announce",
+    "we are proud",
+    "delighted to share",
+    "game changing",
+    "as an ai",
+    "as a language model"
+  ],
+  "palette_hex": [
+    "#0A2463",
+    "#111317",
+    "#F7F7F5",
+    "#E8EDF7"
+  ],
+  "required_receipt_signals": [
+    "https?://\\S+",
+    "github\\.com/\\S+",
+    "\\bcommit\\b",
+    "\\bCI\\b",
+    "\\btests?\\b",
+    "\\bbadge\\b",
+    "\\brepo\\b",
+    "\\bActions\\b",
+    "\\bAPK\\b",
+    "\\bscreenshot\\b",
+    "\\bterminal\\b",
+    "\\b\\d+\\s*(tests?|ms|s|minutes?|hours?|KSh|USD|users|schools|commits?)\\b",
+    "\\bCLM-\\d{3,4}\\b"
+  ],
+  "platform_format_rules": {
+    "FMT-01": [
+      "youtube"
+    ],
+    "FMT-02": [
+      "tiktok",
+      "shorts"
+    ],
+    "FMT-03": [
+      "facebook",
+      "instagram"
+    ]
+  },
+  "max_sentence_words": 45,
+  "max_emoji": 2,
+  "unapproved_product_status_terms": [
+    "production-ready",
+    "production ready",
+    "enterprise-grade",
+    "battle-tested",
+    "in production",
+    "generally available",
+    "GA",
+    "thousands of users",
+    "thousands of schools",
+    "profitable",
+    "revenue-generating",
+    "funded",
+    "backed by"
+  ],
+  "soft_product_status_terms": [
+    "launched",
+    "shipped"
+  ]
+}

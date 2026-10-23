@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius-muse/brand/schemas/research-notes.schema.json",
+  "title": "Researcher output — sourced research notes",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_by", "week", "brief", "findings", "gaps"],
+  "properties": {
+    "generated_by": { "type": "string", "const": "researcher" },
+    "week": { "type": "string", "pattern": "^[0-9]{4}-W[0-9]{2}$" },
+    "brief": { "type": "string", "minLength": 10 },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["finding", "source", "confidence", "verified", "suggested_use"],
+        "properties": {
+          "finding": { "type": "string", "minLength": 10 },
+          "source": { "type": "string", "minLength": 3, "description": "URL or repo/artifact reference. Required: no unsourced assertions." },
+          "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+          "verified": { "type": "boolean", "description": "false for competitor/unverified claims until evidenced." },
+          "suggested_use": { "type": "string", "minLength": 5 }
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 5 },
+      "description": "Topics where sources were insufficient. Report the gap, never pad."
+    }
+  }
+}

@@ -1,0 +1,34 @@
+# Signature formats — the IP (docs/01-architecture.md)
+version: 1
+formats:
+  - id: FMT-01
+    name: Phone to Product
+    cadence: weekly
+    primary_platform: youtube
+    duration: 8-12 minutes
+    purpose: flagship proof — founder story + product demo + AI-build evidence in one asset
+    requires_receipts: true
+    derivatives: [tiktok, instagram, facebook, shorts]
+  - id: FMT-02
+    name: The Verification Files
+    cadence: biweekly
+    primary_platform: tiktok
+    duration: short-form (1.5s hook)
+    purpose: anti-hype positioning; one unglamorous engineering truth tied to a real repo example
+    requires_receipts: true
+    derivatives: [shorts, instagram]
+  - id: FMT-03
+    name: Blueprint in the Wild
+    cadence: 2-3x per month
+    primary_platform: facebook
+    duration: short post or 30-60s Reel
+    purpose: revenue intent — CBC, timetable and school-ops pain points for Kenyan school owners
+    requires_receipts: true
+    derivatives: [instagram]
+supporting_pillars:
+  - founder journal (Korean study / scholarship journey, dated and real)
+  - build-in-public logs with receipts
+  - Kenyan tech/AI commentary only with a genuine angle
+rules:
+  atomization: one hero asset per cycle, decomposed into platform-native derivatives
+  new_formats: require a founder-approved Issue before code

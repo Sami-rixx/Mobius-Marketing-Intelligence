@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius-muse/brand/schemas/qa-report.schema.json",
+  "title": "QA/Editor output — per-item verdict, subscores, lint results",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_by", "week", "threshold", "items"],
+  "properties": {
+    "generated_by": { "type": "string", "const": "qa-editor" },
+    "week": { "type": "string", "pattern": "^[0-9]{4}-W[0-9]{2}$" },
+    "threshold": { "type": "number", "minimum": 0, "maximum": 100 },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["content_id", "verdict", "reason_codes", "subscores", "composite", "lint", "edit_suggestions"],
+        "properties": {
+          "content_id": { "type": "string" },
+          "verdict": { "type": "string", "enum": ["pass", "reject"] },
+          "reason_codes": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "type": "string", "enum": ["VOICE", "UNVERIFIED_CLAIM", "OFF_BRAND", "WEAK_HOOK", "WRONG_AUDIENCE", "TOO_GENERIC", "PERSONAL"] }
+          },
+          "subscores": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["hook_strength", "specificity_evidence", "clarity", "brand_fit", "platform_fit"],
+            "properties": {
+              "hook_strength": { "type": "number", "minimum": 0, "maximum": 100 },
+              "specificity_evidence": { "type": "number", "minimum": 0, "maximum": 100 },
+              "clarity": { "type": "number", "minimum": 0, "maximum": 100 },
+              "brand_fit": { "type": "number", "minimum": 0, "maximum": 100 },
+              "platform_fit": { "type": "number", "minimum": 0, "maximum": 100 }
+            }
+          },
+          "composite": { "type": "number", "minimum": 0, "maximum": 100 },
+          "lint": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["claims", "brand", "voice"],
+            "properties": {
+              "claims": { "type": "array", "items": { "type": "string" } },
+              "brand": { "type": "array", "items": { "type": "string" } },
+              "voice": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "edit_suggestions": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 3 },
+            "description": "Specific suggestions for the Producer. QA never rewrites the draft itself."
+          },
+          "notes": { "type": ["string", "null"] }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "verdict": { "const": "reject" } }, "required": ["verdict"] },
+            "then": { "properties": { "reason_codes": { "minItems": 1 } } }
+          },
+          {
+            "if": { "properties": { "verdict": { "const": "pass" } }, "required": ["verdict"] },
+            "then": { "properties": { "reason_codes": { "maxItems": 0 } } }
+          }
+        ]
+      }
+    },
+    "notes": { "type": ["string", "null"] }
+  }
+}

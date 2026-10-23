@@ -1,0 +1,72 @@
+name: content-ci
+
+# The gate that must catch a lie (docs/03). Green here is required before any PR that
+# touches content, claims, brand, schemas, agents or the engine can merge.
+on:
+  pull_request:
+    paths:
+      - "content/**"
+      - "claims/**"
+      - "brand/**"
+      - "schemas/**"
+      - "agents/**"
+      - "amplify/**"
+      - "strategy/**"
+      - "tests/**"
+      - "requirements*.txt"
+      - ".github/workflows/content-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "content/**"
+      - "claims/**"
+      - "brand/**"
+      - "schemas/**"
+      - "amplify/**"
+      - "agents/**"
+      - "strategy/**"
+      - "tests/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: content-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  content-gate:
+    name: content gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Schemas, claims, brand and content validation
+        run: python -m amplify validate
+
+      - name: Claims gate and brand lint tests
+        run: python -m pytest -q tests/test_claims_gate.py tests/test_brand_lint.py tests/test_schema_validation.py
+
+      - name: Guardrail proof — a planted false claim must fail
+        run: python -m amplify guardrail
+
+      - name: Explicit planted-claim refusal in the PR log
+        run: |
+          set +e
+          python -m amplify validate --path tests/fixtures/planted-false-claim.yaml > planted.log 2>&1
+          status=$?
+          set -e
+          cat planted.log
+          if [ "$status" -eq 0 ]; then
+            echo "::error::the planted false claim validated successfully — the truth layer is broken"
+            exit 1
+          fi
+          echo "planted false claim rejected as expected (exit $status)"

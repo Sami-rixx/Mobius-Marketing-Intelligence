@@ -1,0 +1,42 @@
+{
+  "generated_by": "strategist",
+  "week": "2026-W43",
+  "summary_5_lines": [
+    "Hero: FMT-01 build log — timetable importer, built on the phone.",
+    "Receipts: the test suite and the commit, not adjectives.",
+    "Derivatives: TikTok receipt cut, Instagram carousel, Facebook school-owner note.",
+    "Supporting: FMT-02 verification file on CI versus imports.",
+    "No product-status claims; the registry decides what may be said."
+  ],
+  "hero": {
+    "format": "FMT-01",
+    "working_title": "Timetable importer, built on a phone",
+    "angle": "Show the importer being built and tested this week, with the commit and the failing test named on camera.",
+    "audiences": ["global-builders", "kenya-educators"],
+    "derivatives": [
+      {"platform": "tiktok", "native_form": "vertical 9:16 receipt cut, hook inside 1.5s"},
+      {"platform": "instagram", "native_form": "evidence-styled carousel in Deep Muse Blue"},
+      {"platform": "facebook", "native_form": "school-owner note, no builder jargon"}
+    ],
+    "claims": ["CLM-101", "CLM-104"],
+    "theme": "phone-to-product"
+  },
+  "supporting": [
+    {
+      "format": "FMT-02",
+      "working_title": "An import is not a workflow run",
+      "angle": "One unglamorous CI truth tied to a real repo example, with the run linked on screen.",
+      "platforms": ["tiktok"],
+      "claims": ["CLM-101"]
+    },
+    {
+      "format": "FMT-03",
+      "working_title": "The timetable clash that costs a school a morning",
+      "angle": "Start from the operational pain of timetable clashes, then show the importer doing the boring work.",
+      "platforms": ["facebook"],
+      "claims": []
+    }
+  ],
+  "supporting_only": false,
+  "supporting_only_reason": null
+}

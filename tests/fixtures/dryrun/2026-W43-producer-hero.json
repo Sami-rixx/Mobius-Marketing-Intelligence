@@ -1,0 +1,22 @@
+{
+  "content_id": "2026-W43-FMT01-HERO",
+    "format": "FMT-01",
+  "campaign": "w43-proof-of-work",
+  "theme": "phone-to-product",
+  "platforms": ["youtube", "tiktok", "instagram", "facebook"],
+  "audience": ["global-builders", "kenya-educators"],
+  "objective": "brand_trust",
+  "hook": "I built this on a 4G phone. Here is the commit.",
+  "script": "I built the timetable importer on a 4G phone.\n\nThe first version failed a 132-test suite at commit 59a5a6d.\n\nHere is the failing test on screen. Here is the fix. Here is the green run.\n\nThe point is not that it works. The point is that you can check.\n\nEverything I claim here has a link in the description: the commit, the CI run, the test count.",
+  "caption": "Built on a phone. Tested in public. Commit and CI run in the description.",
+  "cta": "Open the repo and read the failing test yourself.",
+  "visual_brief": "Terminal output and CI badge on a Deep Muse Blue #0A2463 field. No stock footage, no robot imagery. Show the phone in frame once, briefly.",
+  "claims": ["CLM-101", "CLM-104"],
+  "sources": ["fixture://mobius-muse/demo @ 59a5a6d", "fixture://ci/run/demo"],
+  "scores": {},
+  "status": "draft",
+  "rejection_reason": null,
+  "published_urls": {},
+  "performance": {},
+  "deriv_of": null
+}

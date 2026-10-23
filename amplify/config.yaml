@@ -1,0 +1,30 @@
+# amplify/config.yaml — models, budgets and timing for the engine.
+# Read by amplify/config.py only. No secret ever lives in this file.
+
+models:
+  default: "mistral-medium-3.5"      # drafting + QA; revisit quarterly (docs/06-limits.md)
+  qa_judge: "mistral-large-latest"   # judging quality (docs/06 -> qa_judge)
+  researcher: "mistral-medium-3.5"
+  strategist: "mistral-medium-3.5"
+  producer: "mistral-medium-3.5"
+  evidence-keeper: "mistral-medium-3.5"
+  growth-analyst: "mistral-medium-3.5"
+
+budgets:
+  monthly_max_tokens: 2000000        # hard cap; runner refuses to start when reached
+  per_item_max_tokens: 8000          # hard cap per API call
+  max_retries_per_task: 2            # retries AFTER the first attempt (3 attempts total)
+
+# Cost numbers are only recorded when real prices are configured here.
+# Empty = "unknown", which is an honest value (docs/05, docs/06). Do not guess prices.
+pricing: {}
+#  mistral-medium-3.5:
+#    input_per_mtok_usd: 0.00
+#    output_per_mtok_usd: 0.00
+
+registry:
+  default_expiry_days: 180           # docs/01 example: verified 2026-10-21, expires 2027-04-21
+  quarantine_grace_days: 0
+
+# Scheduling and analytics paths are documented in docs/ and README.md; they are not
+# configurable knobs, so they are not duplicated here (config drift is a defect).

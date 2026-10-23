@@ -1,0 +1,22 @@
+{
+  "content_id": "2026-W43-FMT02-S1",
+  "format": "FMT-02",
+  "campaign": "w43-proof-of-work",
+  "theme": "verification-files",
+  "platforms": ["tiktok"],
+  "audience": ["global-builders"],
+  "objective": "brand_recognition",
+  "hook": "An import is not a workflow run.",
+  "script": "Adding an import to a file does nothing on its own.\n\nA workflow run needs a trigger, a runner and a result you can open.\n\nHere is the commit that added the import. Here is the CI run it never triggered.\n\nCheck the Actions tab before you believe a green badge.",
+  "caption": "An import is not a workflow run. Receipts in the pinned comment.",
+  "cta": "Open your own Actions tab and count the runs.",
+  "visual_brief": "Vertical 9:16. Split screen: the diff, then an empty Actions tab. Deep Muse Blue #0A2463 background.",
+  "claims": ["CLM-101"],
+  "sources": ["fixture://ci/run/demo"],
+  "scores": {},
+  "status": "draft",
+  "rejection_reason": null,
+  "published_urls": {},
+  "performance": {},
+  "deriv_of": null
+}

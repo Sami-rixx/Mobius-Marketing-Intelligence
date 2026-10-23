@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "updated": null,
+  "generated_by": "growth-analyst",
+  "source": "analytics/marketing.sqlite (platform/founder-supplied values only)",
+  "metric": "views (mean per key, supplied values only)",
+  "weeks_observed": [],
+  "themes": [],
+  "formats": [],
+  "hooks": [],
+  "median_theme_score": null,
+  "decision_rule": {
+    "theme": "above median -> continue_for_3_cycles; below median -> cut",
+    "format": "never killed before 3 full cycles",
+    "unknown": "missing data stays null; it is never estimated"
+  },
+  "note": "No performance data has been ingested yet. Empty is the honest initial state."
+}

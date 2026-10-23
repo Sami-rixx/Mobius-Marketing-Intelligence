@@ -1,0 +1,108 @@
+name: weekly-cycle
+
+# Fallback run for the Thursday 06:00 EAT cadence (docs/04). 06:00 EAT = 03:00 UTC.
+#
+# Safety defaults:
+#  * disabled until a repository variable ENGINE_SCHEDULE_ENABLED=true exists;
+#  * dry run (zero API cost) unless ENGINE_LIVE=true AND the MISTRAL_API_KEY secret exists;
+#  * contents: read only — this workflow cannot push, open a PR, deploy or publish anything.
+on:
+  schedule:
+    - cron: "0 3 * * 4"
+  workflow_dispatch:
+    inputs:
+      week:
+        description: "ISO week, e.g. 2026-W43 (blank = current)"
+        required: false
+        default: ""
+      mode:
+        description: "dry-run or live"
+        required: true
+        default: "dry-run"
+        type: choice
+        options: [dry-run, live]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-cycle
+  cancel-in-progress: false
+
+jobs:
+  cycle:
+    name: weekly cycle
+    if: vars.ENGINE_SCHEDULE_ENABLED == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Resolve week
+        id: week
+        run: |
+          week="${{ github.event.inputs.week }}"
+          if [ -z "$week" ]; then week=$(date -u +%G-W%V); fi
+          echo "week=$week" >> "$GITHUB_OUTPUT"
+          echo "resolved week: $week"
+
+      - name: Decide mode
+        id: mode
+        run: |
+          requested="${{ github.event.inputs.mode }}"
+          if [ -z "$requested" ]; then
+            if [ "${{ vars.ENGINE_LIVE }}" = "true" ]; then requested="live"; else requested="dry-run"; fi
+          fi
+          if [ "$requested" = "live" ] && [ -z "${MISTRAL_API_KEY}" ]; then
+            echo "::error::live cycle requested but MISTRAL_API_KEY secret is not set"
+            exit 1
+          fi
+          echo "mode=$requested" >> "$GITHUB_OUTPUT"
+
+      - name: Run weekly cycle (dry run)
+        if: steps.mode.outputs.mode == 'dry-run'
+        run: python -m amplify run-weekly --week "${{ steps.week.outputs.week }}" --dry-run | tee cycle.log
+
+      - name: Run weekly cycle (live)
+        if: steps.mode.outputs.mode == 'live'
+        run: python -m amplify run-weekly --week "${{ steps.week.outputs.week }}" --live | tee cycle.log
+
+      - name: Append digest to the job summary
+        if: always()
+        run: |
+          week="${{ steps.week.outputs.week }}"
+          digest="content/review/${week}-digest.md"
+          if [ -f "$digest" ]; then
+            cat "$digest" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No digest produced for ${week}." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [ -f "content/review/${week}-issue.md" ]; then
+            echo "## Issue text (copy into GitHub Issues)" >> "$GITHUB_STEP_SUMMARY"
+            cat "content/review/${week}-issue.md" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload review artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: week-${{ steps.week.outputs.week }}-review
+          path: |
+            content/review/
+            strategy/plans/
+            strategy/research/
+            analytics/usage.jsonl
+          if-no-files-found: warn
+          retention-days: 30
+
+      # No push, no PR, no deploy, no schedule of content. Publication is Samuel's signature.

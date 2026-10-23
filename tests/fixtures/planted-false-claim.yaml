@@ -1,0 +1,36 @@
+# GUARDRAIL PROOF — deliberately false claim.
+#
+# This fixture is schema-valid on purpose: it is well-formed YAML, it has scores, it is
+# marked in_review. Its only defect is that it cites CLM-999, which exists in no registry.
+# Content CI must reject it. See docs/03-content-schema.md and tests/test_claims_gate.py.
+content_id: 2026-W43-FMT01-PLANTED
+format: FMT-01
+campaign: w43-guardrail-proof
+theme: guardrail-proof
+platforms: [youtube]
+audience: [global-builders]
+objective: brand_trust
+hook: "132 tests passed. Here is the commit." 
+script: |
+  I ran the suite. 132 tests passed on commit 59a5a6d.
+  The CI badge is green and the repo is public.
+  This paragraph exists so the only thing wrong with the draft is the fabricated claim below.
+caption: "132 tests, one commit, CLM-999 says so."
+cta: "Repo link in the description."
+visual_brief: "Terminal output on a Deep Muse Blue #0A2463 card."
+claims: [CLM-999]
+sources:
+  - fixture://guardrail-proof
+scores:
+  hook_strength: 88
+  specificity_evidence: 90
+  clarity: 92
+  brand_fit: 95
+  platform_fit: 90
+  composite: 90.65
+status: in_review
+rejection_reason: null
+published_urls: {}
+performance: {}
+deriv_of: null
+week: 2026-W43

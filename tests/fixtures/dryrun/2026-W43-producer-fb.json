@@ -1,0 +1,22 @@
+{
+  "content_id": "2026-W43-FMT01-HERO-FB",
+    "format": "FMT-01",
+  "campaign": "w43-proof-of-work",
+  "theme": "phone-to-product",
+  "platforms": ["facebook"],
+  "audience": ["kenya-school-owners"],
+  "objective": "demand",
+  "hook": "Timetable clashes cost your school a morning.",
+  "script": "If two classes share a teacher at the same hour, someone solves it by hand.\n\nI am building the importer that catches it before the term starts.\n\nIt is not finished, and I will say what it cannot do yet.\n\nWhat it does today: it reads a timetable file and lists every clash with the class and the teacher.\n\nThe test suite is public. You can read what passed.",
+  "caption": "For school administrators: the timetable clash check, in plain language.",
+  "cta": "Tell me the clash your school keeps fixing by hand.",
+  "visual_brief": "School-owner language, no developer jargon. Screenshot of the clash list on a Deep Muse Blue #0A2463 card.",
+  "claims": ["CLM-101"],
+  "sources": ["fixture://mobius-muse/demo @ 59a5a6d"],
+  "scores": {},
+  "status": "draft",
+  "rejection_reason": null,
+  "published_urls": {},
+  "performance": {},
+  "deriv_of": "2026-W43-FMT01-HERO"
+}

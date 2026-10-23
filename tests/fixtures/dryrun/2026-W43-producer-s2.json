@@ -1,0 +1,22 @@
+{
+  "content_id": "2026-W43-FMT03-S2",
+  "format": "FMT-03",
+  "campaign": "w43-proof-of-work",
+  "theme": "school-ops",
+  "platforms": ["facebook"],
+  "audience": ["kenya-school-owners"],
+  "objective": "revenue_intent",
+  "hook": "Schools deserve better software.",
+  "script": "Software should make school operations simpler.\n\nWe believe in building tools that help administrators focus on learning.\n\nOur approach puts people first and keeps things simple.\n\nReach out to learn more about what we are building.",
+  "caption": "Better software for better schools.",
+  "cta": "Send us a message to learn more.",
+  "visual_brief": "Clean graphic with the brand colours.",
+  "claims": [],
+  "sources": [],
+  "scores": {},
+  "status": "draft",
+  "rejection_reason": null,
+  "published_urls": {},
+  "performance": {},
+  "deriv_of": null
+}

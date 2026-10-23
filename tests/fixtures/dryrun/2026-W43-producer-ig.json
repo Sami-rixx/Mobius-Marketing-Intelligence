@@ -1,0 +1,22 @@
+{
+  "content_id": "2026-W43-FMT01-HERO-IG",
+    "format": "FMT-01",
+  "campaign": "w43-proof-of-work",
+  "theme": "phone-to-product",
+  "platforms": ["instagram"],
+  "audience": ["global-builders", "kenya-educators"],
+  "objective": "brand_recognition",
+  "hook": "Five receipts from one week of building.",
+  "script": "Slide 1: the failing test, 132 of them, commit 59a5a6d.\n\nSlide 2: the diff that fixed it.\n\nSlide 3: the green CI run.\n\nSlide 4: the phone I built it on.\n\nSlide 5: what I would do differently.\n\nEvery slide is a screenshot you can verify.",
+  "caption": "Five screenshots, one week, no adjectives.",
+  "cta": "Save this if you build in public too.",
+  "visual_brief": "Evidence-styled carousel, five slides, Deep Muse Blue #0A2463 field with receipt tint #E8EDF7 panels. Screenshots only, no illustrations.",
+  "claims": ["CLM-101", "CLM-104"],
+  "sources": ["fixture://ci/run/demo"],
+  "scores": {},
+  "status": "draft",
+  "rejection_reason": null,
+  "published_urls": {},
+  "performance": {},
+  "deriv_of": "2026-W43-FMT01-HERO"
+}

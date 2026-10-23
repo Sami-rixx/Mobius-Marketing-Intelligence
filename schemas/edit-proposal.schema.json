@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius-muse/brand/schemas/edit-proposal.schema.json",
+  "title": "Edit Loop output — founder-signed learning proposal (PR, never auto-merged)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_by", "week", "evidence", "voice_library_additions", "fingerprint_patch", "producer_instruction_patch", "pr_title", "pr_body_markdown"],
+  "properties": {
+    "generated_by": { "type": "string", "const": "edit-loop" },
+    "week": { "type": "string", "pattern": "^[0-9]{4}-W[0-9]{2}$" },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["edits", "rejections", "reason_counts"],
+      "properties": {
+        "edits": { "type": "integer", "minimum": 0 },
+        "rejections": { "type": "integer", "minimum": 0 },
+        "reason_counts": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 0 } }
+      }
+    },
+    "voice_library_additions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["context", "source", "text", "synthetic"],
+        "properties": {
+          "context": { "type": "string", "enum": ["founder-note", "technical-lesson", "kenya-audience", "global-audience", "humorous", "earnest"] },
+          "source": { "type": "string", "minLength": 3 },
+          "text": { "type": "string", "minLength": 20 },
+          "synthetic": { "type": "boolean", "const": false }
+        }
+      }
+    },
+    "fingerprint_patch": { "type": ["string", "null"], "description": "Proposed unified diff. Never applied by an agent." },
+    "producer_instruction_patch": { "type": ["string", "null"] },
+    "pr_title": { "type": "string", "pattern": "^voice: week [0-9]{4}-W[0-9]{2} learnings$" },
+    "pr_body_markdown": { "type": "string", "minLength": 20 }
+  }
+}

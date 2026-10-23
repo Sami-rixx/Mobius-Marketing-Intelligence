@@ -1,0 +1,29 @@
+# Audiences — one brand, three connected stories (docs/00-vision.md)
+# Slugs used in content `audience:` lists.
+version: 1
+audiences:
+  - slug: kenya-school-owners
+    label: Kenyan school owners and administrators
+    story: product
+    register: kenya
+    language: Kenyan conversational English; Sheng only where Samuel would naturally use it
+    cares_about: [CBC and timetable pain, fees and operations, affordability in KES, trust, working software now]
+    platform_home: facebook
+  - slug: kenya-educators
+    label: Kenyan educators and school staff
+    story: founder
+    register: kenya
+    cares_about: [practical classroom technology, cost, reliability, honest limits]
+    platform_home: facebook, instagram
+  - slug: global-builders
+    label: Global indie builders and AI-assisted developers
+    story: company
+    register: global
+    cares_about: [agent workflows, build-in-public receipts, CI and repo practice, product lessons]
+    platform_home: youtube, tiktok, shorts
+  - slug: global-ai-curious
+    label: Global audience curious about AI in practice
+    story: founder
+    register: global
+    cares_about: [real demos, limits, what actually works, no hype]
+    platform_home: youtube, tiktok

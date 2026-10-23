@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius-muse/brand/schemas/analytics-update.schema.json",
+  "title": "Growth Analyst output — performance rows, rolling scores, memo",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_by", "week", "rows", "unknowns", "aggregates", "memo"],
+  "properties": {
+    "generated_by": { "type": "string", "const": "growth-analyst" },
+    "week": { "type": "string", "pattern": "^[0-9]{4}-W[0-9]{2}$" },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["content_id", "platform", "metrics"],
+        "properties": {
+          "content_id": { "type": "string" },
+          "platform": { "type": "string", "enum": ["youtube", "tiktok", "instagram", "facebook", "shorts"] },
+          "metrics": {
+            "type": "object",
+            "additionalProperties": { "type": ["number", "null"] },
+            "description": "Only platform- or founder-supplied values. null = unknown."
+          }
+        }
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "content_id:platform/metric pairs with no supplied value. Never estimated."
+    },
+    "aggregates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["themes", "formats", "hooks"],
+      "properties": {
+        "themes": { "$ref": "#/$defs/rollup" },
+        "formats": { "$ref": "#/$defs/rollup" },
+        "hooks": { "$ref": "#/$defs/rollup" }
+      }
+    },
+    "memo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question", "text", "guardrail_metrics", "decisions"],
+      "properties": {
+        "question": { "type": "string", "const": "What should we do more of — with evidence?" },
+        "text": { "type": "string", "minLength": 20 },
+        "guardrail_metrics": {
+          "type": "object",
+          "additionalProperties": { "type": ["number", "null"] },
+          "required": [
+            "first_pass_approval_rate", "api_cost_per_run_usd", "cost_per_usable_item_usd",
+            "human_editing_minutes_per_item", "workflow_failure_rate",
+            "reach_per_published_item", "engagement_per_published_item", "qualified_inquiries_blueprint"
+          ]
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["theme", "action", "evidence"],
+            "properties": {
+              "theme": { "type": "string" },
+              "action": { "type": "string", "enum": ["continue_for_3_cycles", "cut", "insufficient_data"] },
+              "evidence": { "type": "string", "minLength": 3 }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "rollup": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "score", "samples", "cycles"],
+        "properties": {
+          "key": { "type": "string" },
+          "score": { "type": ["number", "null"] },
+          "samples": { "type": "integer", "minimum": 0 },
+          "cycles": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

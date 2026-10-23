@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius-muse/brand/schemas/claims-registry.schema.json",
+  "title": "Claims Registry (claims/registry.json)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "updated", "entries"],
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "updated": { "type": "string", "format": "date" },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/claim" }
+    }
+  },
+  "$defs": {
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim_id", "statement", "evidence_type", "evidence_ref",
+        "verified_by", "verified_date", "expires"
+      ],
+      "properties": {
+        "claim_id": { "type": "string", "pattern": "^CLM-[0-9]{3,4}$" },
+        "statement": { "type": "string", "minLength": 10, "maxLength": 400 },
+        "evidence_type": {
+          "type": "string",
+          "enum": ["repo_commit", "ci_run", "deployed_url", "artifact", "screenshot", "personal_statement"]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 3,
+          "description": "Where the receipt lives. For personal_statement, the founder's approval reference."
+        },
+        "verified_by": { "type": "string", "enum": ["samuel"] },
+        "verified_date": { "type": "string", "format": "date" },
+        "expires": { "type": "string", "format": "date" },
+        "notes": { "type": ["string", "null"] },
+        "founder_approval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["approved_by", "approved_date"],
+          "properties": {
+            "approved_by": { "type": "string", "enum": ["samuel"] },
+            "approved_date": { "type": "string", "format": "date" },
+            "note": { "type": ["string", "null"] }
+          }
+        },
+        "quarantined": {
+          "type": "boolean",
+          "default": false,
+          "description": "True when the Evidence Keeper has quarantined the claim (stale/ambiguous evidence)."
+        },
+        "quarantine_reason": { "type": ["string", "null"] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "evidence_type": { "const": "personal_statement" } }, "required": ["evidence_type"] },
+          "then": { "required": ["founder_approval"] }
+        }
+      ]
+    }
+  }
+}

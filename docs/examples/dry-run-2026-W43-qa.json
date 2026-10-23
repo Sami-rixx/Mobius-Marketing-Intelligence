@@ -1,0 +1,144 @@
+{
+  "generated_by": "qa-editor",
+  "week": "2026-W43",
+  "threshold": 70,
+  "items": [
+    {
+      "content_id": "2026-W43-FMT01-HERO",
+      "verdict": "pass",
+      "reason_codes": [],
+      "subscores": {
+        "hook_strength": 100.0,
+        "specificity_evidence": 90.0,
+        "clarity": 95.0,
+        "brand_fit": 100.0,
+        "platform_fit": 90.0
+      },
+      "composite": 95.0,
+      "lint": {
+        "claims": [],
+        "brand": [],
+        "voice": []
+      },
+      "edit_suggestions": [
+        "No blocking issues. Send to Samuel for the publication decision."
+      ],
+      "notes": "threshold 70.0; composite 95.0"
+    },
+    {
+      "content_id": "2026-W43-FMT01-HERO-TT",
+      "verdict": "pass",
+      "reason_codes": [],
+      "subscores": {
+        "hook_strength": 95.0,
+        "specificity_evidence": 80.0,
+        "clarity": 85.0,
+        "brand_fit": 100.0,
+        "platform_fit": 70.0
+      },
+      "composite": 86.25,
+      "lint": {
+        "claims": [],
+        "brand": [],
+        "voice": []
+      },
+      "edit_suggestions": [
+        "No blocking issues. Send to Samuel for the publication decision."
+      ],
+      "notes": "threshold 70.0; composite 86.25"
+    },
+    {
+      "content_id": "2026-W43-FMT01-HERO-IG",
+      "verdict": "pass",
+      "reason_codes": [],
+      "subscores": {
+        "hook_strength": 75.0,
+        "specificity_evidence": 90.0,
+        "clarity": 85.0,
+        "brand_fit": 100.0,
+        "platform_fit": 70.0
+      },
+      "composite": 83.75,
+      "lint": {
+        "claims": [],
+        "brand": [],
+        "voice": []
+      },
+      "edit_suggestions": [
+        "No blocking issues. Send to Samuel for the publication decision."
+      ],
+      "notes": "threshold 70.0; composite 83.75"
+    },
+    {
+      "content_id": "2026-W43-FMT01-HERO-FB",
+      "verdict": "pass",
+      "reason_codes": [],
+      "subscores": {
+        "hook_strength": 75.0,
+        "specificity_evidence": 65.0,
+        "clarity": 95.0,
+        "brand_fit": 100.0,
+        "platform_fit": 70.0
+      },
+      "composite": 79.5,
+      "lint": {
+        "claims": [],
+        "brand": [],
+        "voice": []
+      },
+      "edit_suggestions": [
+        "No blocking issues. Send to Samuel for the publication decision."
+      ],
+      "notes": "threshold 70.0; composite 79.5"
+    },
+    {
+      "content_id": "2026-W43-FMT02-S1",
+      "verdict": "pass",
+      "reason_codes": [],
+      "subscores": {
+        "hook_strength": 75.0,
+        "specificity_evidence": 80.0,
+        "clarity": 95.0,
+        "brand_fit": 100.0,
+        "platform_fit": 85.0
+      },
+      "composite": 85.5,
+      "lint": {
+        "claims": [],
+        "brand": [],
+        "voice": []
+      },
+      "edit_suggestions": [
+        "No blocking issues. Send to Samuel for the publication decision."
+      ],
+      "notes": "threshold 70.0; composite 85.5"
+    },
+    {
+      "content_id": "2026-W43-FMT03-S2",
+      "verdict": "reject",
+      "reason_codes": [
+        "TOO_GENERIC"
+      ],
+      "subscores": {
+        "hook_strength": 75.0,
+        "specificity_evidence": 35.0,
+        "clarity": 95.0,
+        "brand_fit": 100.0,
+        "platform_fit": 85.0
+      },
+      "composite": 74.25,
+      "lint": {
+        "claims": [],
+        "brand": [
+          "TOO_GENERIC (brand.no_receipt) [script]: no artifact, number, repo, CI run or claim id appears anywhere: this could be any AI brand"
+        ],
+        "voice": []
+      },
+      "edit_suggestions": [
+        "TOO_GENERIC (brand.no_receipt) [script]: no artifact, number, repo, CI run or claim id appears anywhere: this could be any AI brand"
+      ],
+      "notes": "threshold 70.0; composite 74.25"
+    }
+  ],
+  "notes": "verdicts recomputed by amplify/scoring.py; QA can reject but never rewrite"
+}

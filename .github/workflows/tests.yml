@@ -1,0 +1,47 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: engine tests (python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Compile check
+        run: python -m compileall -q amplify tests
+
+      - name: Lint the engine (ruff)
+        run: ruff check amplify tests --select E,F,W,B --ignore E501
+
+      - name: Validate repository (schemas, claims, brand, content, decisions)
+        run: python -m amplify validate
+
+      - name: Unit tests (no live API calls)
+        run: python -m pytest -q
+
+      - name: Guardrail proof (planted false claim must be rejected)
+        run: python -m amplify guardrail

@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "updated": "2026-10-01",
+  "entries": [
+    {
+      "claim_id": "CLM-101",
+      "statement": "SYNTHETIC FIXTURE — not a real claim — the demo build records a suite of 132 automated tests",
+      "evidence_type": "repo_commit",
+      "evidence_ref": "fixture://mobius-muse/demo @ 59a5a6d",
+      "verified_by": "samuel",
+      "verified_date": "2026-10-01",
+      "expires": "2027-04-01",
+      "notes": "Synthetic fixture used by tests and dry runs. Never publish."
+    },
+    {
+      "claim_id": "CLM-102",
+      "statement": "SYNTHETIC FIXTURE — not a real claim — an expired evidence entry used to test expiry rules",
+      "evidence_type": "ci_run",
+      "evidence_ref": "fixture://ci/run/1",
+      "verified_by": "samuel",
+      "verified_date": "2024-06-01",
+      "expires": "2025-01-01",
+      "notes": "Deliberately expired fixture."
+    },
+    {
+      "claim_id": "CLM-103",
+      "statement": "SYNTHETIC FIXTURE — not a real claim — a quarantined entry used to test quarantine rules",
+      "evidence_type": "screenshot",
+      "evidence_ref": "fixture://screenshot/quarantined.png",
+      "verified_by": "samuel",
+      "verified_date": "2026-09-01",
+      "expires": "2027-03-01",
+      "quarantined": true,
+      "quarantine_reason": "fixture: evidence unreadable",
+      "notes": "Deliberately quarantined fixture."
+    },
+    {
+      "claim_id": "CLM-104",
+      "statement": "SYNTHETIC FIXTURE — not a real claim — the demo build log is a public commit history of 40 commits",
+      "evidence_type": "repo_commit",
+      "evidence_ref": "fixture://mobius-muse/demo @ 2e481e7",
+      "verified_by": "samuel",
+      "verified_date": "2026-10-01",
+      "expires": "2027-04-01",
+      "notes": "Synthetic fixture used by tests and dry runs. Never publish."
+    },
+    {
+      "claim_id": "CLM-105",
+      "statement": "SYNTHETIC FIXTURE — not a real claim — built the demo on an Android phone",
+      "evidence_type": "personal_statement",
+      "evidence_ref": "fixture://founder/statement/1",
+      "verified_by": "samuel",
+      "verified_date": "2026-10-01",
+      "expires": "2027-04-01",
+      "founder_approval": {
+        "approved_by": "samuel",
+        "approved_date": "2026-10-01",
+        "note": "fixture approval"
+      },
+      "notes": "Synthetic fixture used by tests and dry runs. Never publish."
+    },
+    {
+      "claim_id": "CLM-106",
+      "statement": "SYNTHETIC FIXTURE — not a real claim — the demo importer has been in production at one demo school since May",
+      "evidence_type": "artifact",
+      "evidence_ref": "fixture://artifact/demo-school-deployment-note",
+      "verified_by": "samuel",
+      "verified_date": "2026-10-01",
+      "expires": "2027-04-01",
+      "notes": "Synthetic fixture used to prove product-status words require a receipt. Never publish."
+    }
+  ]
+}
